@@ -8,7 +8,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<!-- 스프링 시큐리티를 위한 xml 추가 -->
-		<param-value>/WEB-INF/spring/root-context.xml,/WEB-INF/spring/security-context.xml</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml,/WEB-INF/spring/security-db-basic-context.xml</param-value>
 		<!-- <param-value>/WEB-INF/spring/security-context.xml</param-value> -->
 		<!-- 위에처럼 param_value 태그를 각각 따로따로 써주면 안되니 주의하기! -->
 	</context-param>

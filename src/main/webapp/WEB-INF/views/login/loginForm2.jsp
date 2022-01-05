@@ -27,11 +27,11 @@
     			
 	          <div class="form-group">
 	              <label for="exampleDropdownFormEmail1">ID</label>
-	              <input type="text" class="form-control" name="username" placeholder="example">
+	              <input type="text" class="form-control" name="id" placeholder="example">
 	          </div>							<!-- name과 security-context.xml의 username-parameter와 같아야한다. -->
 	          <div class="form-group">
 	              <label for="exampleDropdownFormPassword1">Password</label>
-	              <input type="password" class="form-control" name="pw" placeholder="Password">
+	              <input type="password" class="form-control" name="password" placeholder="Password">
 	          </div>							<!-- name과 security-context.xml의 password-parameter와 같아야한다. -->
 	          <div class="form-check">
 	              <label class="form-check-label">

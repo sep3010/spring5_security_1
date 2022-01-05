@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+   	<!-- 디폴트가 있으면 디폴트를 쓰겠다...(auto-config=true) -->
+     <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/login/loginForm" access="permitAll" />
+        <intercept-url pattern="/" access="permitAll" />
+        <intercept-url pattern="/security/member" access="hasRole('ROLE_USER')" /> 
+        <intercept-url pattern="/security/admin" access="hasRole('ROLE_ADMIN')" />  
+       <!-- <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />  --> 
+        				<!-- /admin/..으로 접속하는 것은 권한이 ADMIN이어야한다 -->
+      <!--  <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')" /> -->
+        			<!-- 위 3개를 제외한 모든 경로. 이걸 제일 위에 쓰면 위 3개가 의미가 없어짐
+        				 따라서 url권한은 좁은 범위에서 큰 범위 순으로 적어야한다. -->
+      
+      <!--로그인 페이지 커스텀 화 -->
+      <form-login login-page="/login/loginForm"
+                    default-target-url="/"
+                    authentication-failure-url="/login/loginForm?error"
+                    username-parameter="id"
+                    password-parameter="password" />
+         <!-- login-page= 로그인할 url 페이지 
+         	  default-target-url= 로그인 성공하면 이동할 디폴트 url
+         	  authentication-failure-url= 인증 실패시 이동할 url
+         	  username-parameter= 아이디 값을 보낼 변수명
+         	  password-parameter= 패스워드 값을 보낼 변수명 -->           
+      
+      		<!-- 로그아웃 성공하면 "/"로 보내라 -->
+      <logout logout-url="/logout" logout-success-url="/" /> 
+                
+      <!-- 403 에러 처리 -->
+      <access-denied-handler error-page="/security/accessError"/>      
+   </http> 
+   
+<!--    <beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="dataSource"/>
+    </beans:bean>  -->
+   
+    <beans:bean id="customNoOpPasswordEncoder" class="edu.kosmo.ex.security.CustomNoOpPasswordEncoder"/>
+   <!-- 이건 만들어준 암호화 안된 버전...현재는 암호화 안된 버전이 없어져서 이렇게 직접 만들어줘서 사용해야한다. -->
+   
+<!-- provider --> 
+   <authentication-manager>
+      <authentication-provider>
+      <password-encoder ref="customNoOpPasswordEncoder"/>
+      <!-- 정해져 있다..프레임 워크라..일단 그냥 외워서 써라ㅠ -->  
+      <!-- dataSource를 사용하려면 root-context.xml에 커넥션 풀이 만들어져 있어야한다. 
+      		DB에서 권한 정보를 불러오기 위해서...-->
+      <!-- empno=7698 ename=BLAKE -->		
+      <jdbc-user-service 
+               data-source-ref="dataSource"             
+      /> 
+      <!-- dataSource만 생성해주면 로그인하면 db에 아래의 쿼리문을 실행해서 알아서 확인해 준다! 내부적으로 디폴트 값으로 정해져 있다.(JdbcDaoImpl.class...) -->
+      <!-- 인증 sql: select username,password,enabled from users where username = ? -->
+      <!-- 권한 sql: select username,authority from authorities where username = ? -->
+      <!-- 콘솔창에서 id 확인하는 것 확인 가능. 패스워드는 보안상의 이유로 보이지 않는다. -->
+      <!-- users-by-username-query="select username, password, enabled from users where username = ?"
+           authorities-by-username-query="select username, authority from authorities where username = ?"
+           이렇게 써줘도 디폴트 값 사용하는 것과 같다...아니면 이걸 사용해 쿼리문을 변경하는 것도 가능하다.
+       -->
+       
+      <!-- emp에서 ename을 아이디로, empno를 비밀번호로, job이 MANAGER일 때 권한 admin, 나머지는 user로 세팅하기
+      	users-by-username-query="select ename, empno, 1 from emp where ename = ?"
+        authorities-by-username-query="select ename, case when job='MANAGER' then 'ROLE_ADMIN' else 'ROLE_USER' end authority from emp where ename=?" --> 
+      </authentication-provider>
+   </authentication-manager>
+    
+    
+</beans:beans>
