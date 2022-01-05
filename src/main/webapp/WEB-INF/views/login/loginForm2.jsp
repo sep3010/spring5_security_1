@@ -39,11 +39,11 @@
 	              Remember me
 	              </label>
 	          </div>
-	          <!-- <from:form... 을 사용하게되면 아래 코드를 스프링 시큐리티가 자동으로 만들어 붙여준다. 자동으로 안붙으면 직접 넣어야한다. 
-	          		아래의 코드가 없으면 오류난다. (GET 방식은 상관없고 POST 방식일 때!)-->
+	          <%-- <from:form... 을 사용하게되면 아래 코드를 스프링 시큐리티가 자동으로 만들어 붙여준다. 자동으로 안붙으면 직접 넣어야한다. 
+	          		아래의 코드가 없으면 오류난다. (GET 방식은 상관없고 POST 방식일 때!) --%>
 	          <%-- <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/> --%>
 	          <button type="submit" class="btn btn-primary">Sign in</button>
-	   </form:form>
+	   	  </form:form>
 	      <div class="dropdown-divider"></div>
 	      <a class="dropdown-item" href="#">New around here? Sign up</a>
 	      <a class="dropdown-item" href="#">Forgot password?</a>
