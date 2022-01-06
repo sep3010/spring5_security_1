@@ -20,9 +20,6 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -37,11 +34,20 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("/user/userHome")
+	public void userHome() {
+		log.info("userHome..");
+	}
+	
+	@GetMapping("/admin/adminHome")
+	public void adminHome() {
+		log.info("adminHome..");
+	}
+		
 	@GetMapping("/login/loginForm")
 	public String loginForm() {
 		log.info("Welcome Login Form");
-		return "login/loginForm2";
-				
+		return "login/loginForm2";				
 	}
 	
 }
