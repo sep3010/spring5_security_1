@@ -52,7 +52,9 @@
       		DB에서 권한 정보를 불러오기 위해서...-->
       <!-- empno=7698 ename=BLAKE -->		
       <jdbc-user-service 
-               data-source-ref="dataSource"             
+               data-source-ref="dataSource"
+               users-by-username-query="select ename, empno, 1 from emp where ename = ?"
+        	   authorities-by-username-query="select ename, case when job='MANAGER' then 'ROLE_ADMIN' else 'ROLE_USER' end authority from emp where ename = ?"             
       /> 
       <!-- dataSource만 생성해주면 로그인하면 db에 아래의 쿼리문을 실행해서 알아서 확인해 준다! 내부적으로 디폴트 값으로 정해져 있다.(JdbcDaoImpl.class...) -->
       <!-- 인증 sql: select username,password,enabled from users where username = ? -->
@@ -65,7 +67,7 @@
        
       <!-- emp에서 ename을 아이디로, empno를 비밀번호로, job이 MANAGER일 때 권한 admin, 나머지는 user로 세팅하기
       	users-by-username-query="select ename, empno, 1 from emp where ename = ?"
-        authorities-by-username-query="select ename, case when job='MANAGER' then 'ROLE_ADMIN' else 'ROLE_USER' end authority from emp where ename=?" --> 
+        authorities-by-username-query="select ename, case when job='MANAGER' then 'ROLE_ADMIN' else 'ROLE_USER' end authority from emp where ename = ?" --> 
       </authentication-provider>
    </authentication-manager>
     
