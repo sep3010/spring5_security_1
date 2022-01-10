@@ -29,8 +29,8 @@
     <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
     
     <!-- 이제 이전에 만들었던 암호화 모듈이 적용되지 않은 버전은 사용하지 않고, 위의 암호화 모듈 사용 -->     
-    <beans:bean id="customNoOpPasswordEncoder" class="edu.kosmo.ex.security.CustomNoOpPasswordEncoder"/> 
-    <beans:bean id="userCustomDetailsService" class="edu.kosmo.ex.security.UserCustomDetailsService"/> 
+    <beans:bean id="customNoOpPasswordEncoder" class="edu.kosmo.ex.security.CustomNoOpPasswordEncoder"/>
+    <beans:bean id="userCustomDetailsService" class="edu.kosmo.ex.security.UserCustomDetailsService"/>
     
     <!-- BLAKE 7698 -->
     <!--  provider  -->

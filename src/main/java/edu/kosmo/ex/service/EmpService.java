@@ -2,8 +2,6 @@ package edu.kosmo.ex.service;
 
 import javax.inject.Inject;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import edu.kosmo.ex.mapper.EmpMapper;

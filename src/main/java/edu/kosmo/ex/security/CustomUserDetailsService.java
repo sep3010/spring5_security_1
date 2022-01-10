@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import edu.kosmo.ex.mapper.EmpMapper;
-import edu.kosmo.ex.vo.CustomUser;
 import edu.kosmo.ex.vo.CustomUserDetails;
 import edu.kosmo.ex.vo.EmpVO;
 import lombok.Setter;
