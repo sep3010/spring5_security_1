@@ -1,6 +1,7 @@
 package edu.kosmo.ex.vo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,4 +26,5 @@ public class EmpVO {
 	int comm;// NUMBER(7,2)
 	int deptno;// NUMBER(2)
 
+	private List<AuthVO> authList;
 }
