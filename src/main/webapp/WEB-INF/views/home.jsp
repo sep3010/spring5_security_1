@@ -12,11 +12,11 @@
 <body>
 
 <h1>메인페이지</h1>
-
+					<!-- 로그인을 안했다면 -->
 <sec:authorize access="isAnonymous()">
    <p><a href="<c:url value="/login/loginForm" />">로그인</a></p>
 </sec:authorize>
-
+					<!-- 로그인을 했다면 -->
 <sec:authorize access="isAuthenticated()">
    <form:form action="${pageContext.request.contextPath}/logout" method="POST">
        <input type="submit" value="로그아웃" />
