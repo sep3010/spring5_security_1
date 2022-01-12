@@ -11,9 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
-@Log4j
 @Getter 
 @Setter						// 2. UserDetails를 상속해서 클래스 생성
 public class CustomUserDetails implements UserDetails {
@@ -68,6 +66,7 @@ public class CustomUserDetails implements UserDetails {
 		
 		for (AuthVO auth: empVO.getAuthList()) {
 			authorities.add(new SimpleGrantedAuthority(auth.getAuthority()));
+								// 권한 명칭을 저장하기 위한 객체
 		}
 		
 		return authorities;

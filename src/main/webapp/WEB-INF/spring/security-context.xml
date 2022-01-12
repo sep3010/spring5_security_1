@@ -9,6 +9,7 @@
 <!-- 스프링 시큐리티가 아래 코드만 있으면 알아서 로그인 폼을 만들어줘서 
 	 http://localhost:8282/ex/login로 접근 가능 -->
 	<http>
+	    <!-- <csrf disabled="true"/> csrf를 사용하지 않겠다. -->
 		<!-- http://localhost:8282/ex/security/all 로 접속하면 모든 사람이 접근할 수 있다. -->
 		<intercept-url pattern="/security/all" access="permitAll" />
 		<intercept-url pattern="/security/member" access="hasRole('ROLE_MEMBER')" />

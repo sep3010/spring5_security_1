@@ -2,7 +2,6 @@ package edu.kosmo.ex.vo;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -11,9 +10,7 @@ import org.springframework.security.core.userdetails.User;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
-@Log4j
 @Getter
 @Setter					// 1. User를 상속해서 클래스 생성
 public class CustomUser extends User {

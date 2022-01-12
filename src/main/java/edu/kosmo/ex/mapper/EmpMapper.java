@@ -15,6 +15,6 @@ public interface EmpMapper {
 	@Select("select * from emp where ename = #{ename}")
 	public EmpVO readUser(String name);
 	
-	@Select("select ename,case when job='MANAGER' then 'ROLE_ADMIN' else  'ROLE_USER' end authority from emp where ename = #{ename}")
+	@Select("select ename,case when job='MANAGER' then 'ROLE_ADMIN' else 'ROLE_USER' end authority from emp where ename = #{ename}")
 	public List<AuthVO> readAuthority(String name);
 }
